@@ -7,13 +7,13 @@ class DataParser:
 
     def import_data(self):
         # Loading testing data form file
-        print("Testing data")
         testing_data = np.loadtxt(fname=self.testing_file_path, delimiter=',')
-        print(testing_data)
+        x_testing_data = testing_data[:, :-1]
+        y_testing_data = testing_data[:, -1]
 
         # Loading training data form file
-        print("Training data")
         training_data = np.loadtxt(fname=self.training_file_path, delimiter=',')
-        print(training_data)
+        x_training_data = training_data[:, :-1]
+        y_training_data = training_data[:, -1]
 
-        return testing_data, training_data
+        return x_testing_data, y_testing_data, x_training_data, y_training_data
