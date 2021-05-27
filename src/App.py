@@ -1,4 +1,3 @@
-from sklearn.ensemble import RandomForestClassifier
 from src.DataParser import DataParser, normalize_x_data, normalize_y_data
 from src.DataPlotter import plot_data, plot_missing_data
 from src.Pca import pcaFunction

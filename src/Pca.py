@@ -38,14 +38,14 @@ def pcaFunction(data_matrix, scree_plot_path, pca_plot_path):
     plt.bar(x=range(1, len(per_var) + 1), height=per_var, tick_label=labels)
     plt.ylabel('Percentage of Explained Variance')
     plt.xlabel('Principal Component')
-    plt.title('Scree Plot - attributes of poker hands')
+    plt.title('Scree Plot - attributes of poker hands of testing data')
     plt.savefig(scree_plot_path, dpi=400)
     plt.show()
 
     pca_df = pd.DataFrame(pca_data, index=[*att], columns=labels)
 
     plt.scatter(pca_df.PC1, pca_df.PC2)
-    plt.title('Poker hands - PCA Graph')
+    plt.title('PCA Graph - poker hands of testing data')
     plt.xlabel('PC1 - {0}%'.format(per_var[0]))
     plt.ylabel('PC2 - {0}%'.format(per_var[1]))
 
