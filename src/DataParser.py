@@ -10,7 +10,7 @@ def normalize_x_data(data_array):
     # even columns
     data_array[:, 1::2] = (data_array[:, 1::2] - even_min) / (even_max - even_min)
 
-    #odd columns
+    # odd columns
     data_array[:, ::2] = (data_array[:, ::2] - odd_min) / (odd_max - odd_min)
 
     return data_array
@@ -24,6 +24,23 @@ def normalize_y_data(data_array):
 
     return data_array
 
+
+def create_subsets(data):
+    data = data[(-data[:, -1]).argsort()]
+
+    subsets = [[], [], [], [], [], [], [], [], [], []]
+    counter = 0
+    for x in data:
+        if counter > 9:
+            counter = 0
+        subsets[counter].append(x)
+        counter = counter + 1
+
+    subsets = np.array(subsets)
+
+    return subsets
+
+
 class DataParser:
     testing_file_path = r'../Data/poker-hand-testing.data'
     training_file_path = r'../Data/poker-hand-training-true.data'
@@ -33,13 +50,17 @@ class DataParser:
         testing_data = np.loadtxt(fname=self.testing_file_path, delimiter=',')
         testing_data = np.unique(testing_data, axis=0)  # making all rows unique
 
-        x_testing_data = testing_data[:, :-1]
-        y_testing_data = testing_data[:, -1]
-
         # Loading training data form file
         training_data = np.loadtxt(fname=self.training_file_path, delimiter=',')
         training_data = np.unique(training_data, axis=0)  # making all rows unique
+
+        all_data = np.concatenate((testing_data, training_data))
+        subsets = create_subsets(all_data)
+
+        x_testing_data = testing_data[:, :-1]
+        y_testing_data = testing_data[:, -1]
+
         x_training_data = training_data[:, :-1]
         y_training_data = training_data[:, -1]
 
-        return x_testing_data, y_testing_data, x_training_data, y_training_data
+        return x_testing_data, y_testing_data, x_training_data, y_training_data, subsets

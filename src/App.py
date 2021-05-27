@@ -3,7 +3,7 @@ from src.DataPlotter import plot_data, plot_missing_data
 from src.Pca import pcaFunction
 
 data_parser = DataParser()
-x_testing_data, y_testing_data, x_training_data, y_training_data = data_parser.import_data()
+x_testing_data, y_testing_data, x_training_data, y_training_data, subsets = data_parser.import_data()
 
 print("x_testing_data")
 print(x_testing_data)
