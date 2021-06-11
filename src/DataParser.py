@@ -28,10 +28,10 @@ def normalize_y_data(data_array):
 def create_subsets(data):
     data = data[(-data[:, -1]).argsort()]
 
-    subsets = [[], [], [], [], [], [], [], [], [], []]
+    subsets = [[], [], [], [], [], [], [], []]
     counter = 0
     for x in data:
-        if counter > 9:
+        if counter > 7:
             counter = 0
         subsets[counter].append(x)
         counter = counter + 1
